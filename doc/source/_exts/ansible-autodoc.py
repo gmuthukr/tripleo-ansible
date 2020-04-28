@@ -23,9 +23,6 @@ from docutils.parsers.rst import Directive
 from docutils.parsers import rst
 from docutils.writers.html4css1 import Writer
 
-from sphinx import addnodes
-
-import yaml
 from ruamel.yaml import YAML as RYAML
 
 try:
@@ -36,6 +33,7 @@ except ImportError:
 
 
 class DocYaml(RYAML):
+
     def _license_filter(self, data):
         """This will filter out our boilerplate license heading in return data.
 
@@ -222,7 +220,7 @@ class AnsibleAutoPluginDirective(Directive):
                                  ' and variables set within the "{}"'
                                  ' role.'.format(
                                      os.path.basename(role)
-                    )
+                                 )
                 )
             )
 
@@ -247,7 +245,7 @@ class AnsibleAutoPluginDirective(Directive):
                  ' and provides an example playbook showing how the role'
                  ' is leveraged.'.format(
                      os.path.basename(role)
-            )
+                 )
         )
         molecule_path = os.path.join(role, 'molecule')
         if os.path.exists(molecule_path):
